@@ -2,12 +2,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllersWithViews();
-//working with xml and json
-//builder.Services.AddControllers(option =>
-//{
-//    option.ReturnHttpNotAcceptable=true;
-//}).AddNewtonsoftJson().AddXmlDataContractSerializerFormatters();
+
+builder.Services.AddControllers(option =>
+{
+    //option.ReturnHttpNotAcceptable=true;  //uncomment for xml
+}).AddNewtonsoftJson().AddXmlDataContractSerializerFormatters();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
