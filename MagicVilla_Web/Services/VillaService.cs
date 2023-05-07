@@ -14,6 +14,7 @@ namespace MagicVilla_Web.Services
         {
             _clientFactory = clientFactory;
             villaUrl = configuration.GetValue<string>("ServiceUrls:VillaAPI");
+
         }
 
         public Task<T> CreateAsync<T>(VillaCreateDTO dto)
@@ -31,7 +32,7 @@ namespace MagicVilla_Web.Services
             return SendAsync<T>(new APIRequest()
             {
                 ApiType = SD.ApiType.DELETE,
-                Url = villaUrl + "/api/villaAPI/"+id
+                Url = villaUrl + "/api/villaAPI/" + id
             });
         }
 
