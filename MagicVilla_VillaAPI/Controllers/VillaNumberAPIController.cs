@@ -2,10 +2,12 @@
 using MagicVilla_VillaAPI.Models;
 using MagicVilla_VillaAPI.Models.DTO;
 using MagicVilla_VillaAPI.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using System.Net;
 
 namespace MagicVilla_VillaAPI.Controllers
@@ -82,6 +84,7 @@ namespace MagicVilla_VillaAPI.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -110,7 +113,7 @@ namespace MagicVilla_VillaAPI.Controllers
                 await _dbVillaNumber.CreateAsync(villaNumber);
                 _response.Result = _mapper.Map<VillaNumberDTO>(villaNumber);
                 _response.StatusCode = HttpStatusCode.Created;
-                return CreatedAtRoute("GetVillaNumber", new { id = villaNumber.VillaNo }, villaNumber);
+                return CreatedAtRoute("GetVilla", new { id = villaNumber.VillaNo }, _response);
             }
             catch (Exception ex)
             {
@@ -121,7 +124,7 @@ namespace MagicVilla_VillaAPI.Controllers
         }
 
 
-
+        [Authorize(Roles = "admin")]
         [HttpDelete("{id:int}", Name = "DeleteVillaNumber")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -154,7 +157,7 @@ namespace MagicVilla_VillaAPI.Controllers
 
 
 
-
+        [Authorize(Roles = "admin")]
         [HttpPut("{id:int}", Name = "UpdateVillaNumber")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
