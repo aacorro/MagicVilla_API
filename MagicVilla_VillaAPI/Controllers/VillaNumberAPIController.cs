@@ -53,8 +53,8 @@ namespace MagicVilla_VillaAPI.Controllers
         }
 
         #region API Versioning sample
-        [HttpGet]
         [MapToApiVersion("2.0")]
+        [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
