@@ -14,7 +14,7 @@ namespace MagicVilla_Web.Controllers
             _authService = authService;
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult Login()
         {
             LoginRequestDTO obj = new();
@@ -24,7 +24,7 @@ namespace MagicVilla_Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginRequestDTO obj)
+        public IActionResult Login(LoginRequestDTO obj)
         {
             return View();
         }
