@@ -32,16 +32,11 @@ namespace MagicVilla_VillaAPI.Controllers.v2
 
         //versioning sample method
         //[MapToApiVersion("2.0")]
-        [HttpGet]
+        [HttpGet("GetString")]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { "Abdiel", "Antonio" };
         }
-
-
-
-
-
 
     }
 }
